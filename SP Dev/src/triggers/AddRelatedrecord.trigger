@@ -1,5 +1,6 @@
 trigger AddRelatedrecord on Account (after insert,after update) {
     
+    system.debug('inside trigger');
     List<Opportunity> oppList= new List<Opportunity>();
 	for (Account a : [SELECT Id,Name FROM Account
                      WHERE Id IN :Trigger.New AND
