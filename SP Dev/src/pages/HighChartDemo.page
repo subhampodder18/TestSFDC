@@ -1,0 +1,77 @@
+<apex:page controller="highChartDemoController" sidebar="false" id="pg">
+    <head> 
+        <apex:includeScript value="{!$Resource.jqueryjs}"/>
+        <apex:includeScript value="{!$Resource.highChartsjs}"/>
+        <apex:includeScript value="{!$Resource.exportingjs}"/>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                getDataForHighChart();
+            
+            });
+        
+            function getDataForHighChart() {
+                Visualforce.remoting.Manager.invokeAction(
+                    '{!$RemoteAction.highChartDemoController.getDataForChart}',
+                     
+                    function(result, event){
+                        if (event.status) {
+                            var clabels=result.chartLabels ;
+                            var cData=result.chartData ;
+                            //alert('---clabels:'+clabels+'----cData:'+cData);
+                            
+                            if(clabels.length>0){
+                                GenerateChart(clabels,cData);
+                            }
+                        }
+                    }, 
+                    {escape: true}
+                );
+            }
+            function GenerateChart(chartlabels,count){  
+                $('#container').highcharts({
+                    title: {
+                        text: 'No.of opportunities grouped by Stage',
+                        x: -20 //center
+                    },
+                    subtitle: {
+                        text: 'Source: Opportunity Records',
+                        x: -20
+                    },
+                    xAxis: {
+                        categories: chartlabels
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'No.of Opportunities'
+                        },
+                        plotLines: [{
+                            value: 0,
+                            width: 1,
+                            color: '#808081'
+                        }]
+                    },
+                    tooltip: {
+                        valueSuffix: ''
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'middle',
+                        borderWidth: 0
+                    },
+                    series: [{
+                        name: 'Number of Opportunity',
+                        data: count
+                    }]
+                });
+            }
+            </script>
+  
+    </head> 
+   
+    <body>
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    </body> 
+
+</apex:page>

@@ -1,0 +1,31 @@
+<apex:page controller="CustomSettingController" sidebar="false">
+<apex:form >
+<apex:pageBlock mode="edit" id="PB" title="Edit Custom Settings">
+<apex:pageMessages />
+
+<apex:pageBlockButtons location="Top">
+    <apex:commandButton action="{!Edit}" value="Edit" rendered="{!Not(isEdit)}" reRender="PB"/>
+    <apex:commandButton action="{!Save}" value="Save" rendered="{!isEdit}" reRender="PB"/>
+    <apex:commandButton action="{!Cancel}" value="Cancel" rendered="{!isEdit}" reRender="PB"/>
+</apex:pageBlockButtons>
+
+<apex:pageBlockSection rendered="{!Not(isEdit)}" id="PB1" >
+ <apex:outputField value="{!custSetting.Number_Of_Days__c}"/>         
+ <apex:outputField value="{!custSetting.User_name__c}"/>            
+</apex:pageBlockSection>
+
+<apex:pageBlockSection rendered="{!isEdit}" id="PB2" title="Update Commerce Settings Data">
+   <apex:pageBlockSectionItem >
+    <apex:outputLabel value="{!$ObjectType.Custome_Settings__c.fields.Number_Of_Days__c.Label}" />            
+    <apex:inputText value="{!number_Of_Days}"/>            
+ </apex:pageBlockSectionItem> 
+ <apex:pageBlockSectionItem >
+  <apex:outputLabel value="{!$ObjectType.Custome_Settings__c.fields.User_name__c.Label}" />            
+  <apex:inputText value="{!strName}"/>            
+</apex:pageBlockSectionItem>
+
+</apex:pageBlockSection>
+
+</apex:pageBlock>
+</apex:form>
+</apex:page>

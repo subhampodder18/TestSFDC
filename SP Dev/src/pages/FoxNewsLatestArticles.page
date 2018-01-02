@@ -1,0 +1,16 @@
+<apex:page controller="NewsController" >
+
+<apex:form >
+    <apex:commandButton action="{!RefreshUserData}" value="Refresh data" reRender="newspanel"/>    
+</apex:form>
+    <apex:pageBlock title="Latest News" id="newspanel">
+        <apex:pageBlockSection collapsible="false" title="News Article 1">
+            <apex:outputText label="Author" value="{!UserData.articles[0].author}"></apex:outputText>
+            <apex:outputText label="Title" value="{!UserData.articles[0].title}"></apex:outputText>
+            <apex:outputText label="Description" value="{!UserData.articles[0].description}"></apex:outputText>
+            <apex:outputText label="URL" value="{!UserData.articles[0].url}"></apex:outputText>
+            <apex:outputText label="Image" value="{!UserData.articles[0].urlToImage}"></apex:outputText>
+            <apex:outputText label="Published Date" value="{!UserData}"></apex:outputText>    
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

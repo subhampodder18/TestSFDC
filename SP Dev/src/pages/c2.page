@@ -1,0 +1,15 @@
+<apex:page controller="c2">
+  <apex:form >
+  <apex:pageBlock title="List of Accounts">
+      <apex:commandButton value="Show Accounts" action="{!showall}" reRender="tab1"/>
+      <apex:commandButton value="Show Tech Accounts" action="{!showtech}"/>
+  <apex:pageBlockTable value="{!accLst}" var="a" id="tab1">
+      <apex:column value="{!a.Name}"/>
+      <apex:column value="{!a.Industry}"/>
+      <apex:column value="{!a.Phone}"/>
+      <apex:column value="{!a.Fax}"/>
+      
+  </apex:pageBlockTable>
+  </apex:pageBlock>
+ </apex:form>
+</apex:page>

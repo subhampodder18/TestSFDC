@@ -1,0 +1,15 @@
+<apex:page controller="class1">
+    <apex:pageBlock >
+    {!str1} <br/>
+    {!acct.Name} <br/>
+    {!acct.Industry} <br/>
+    </apex:pageBlock>
+    
+    <apex:pageBlock title="List of Accounts">
+    <apex:pageblockTable value="{!accLst}" var="a">
+        <apex:column value="{!a.Name}"/>
+        <apex:column value="{!a.Industry}"/>                    
+    </apex:pageblockTable>
+    </apex:pageBlock>
+
+</apex:page>
